@@ -40,7 +40,7 @@ public class Voronoi {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 n = 0;
-                for (byte i = 0; i < cells; i++) {
+                for (int i = 0; i < cells; i++) {
                     if (distance(px[i], x, py[i], y) < distance(px[n], x, py[n], y)) {
                         n = i;
                     }
