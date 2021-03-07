@@ -1,10 +1,16 @@
 package ir.ac.kntu;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 import static javafx.scene.paint.Color.BLACK;
@@ -54,7 +60,15 @@ public class Voronoi {
             Circle circle1 = new Circle(px[i], py[i], 3, BLACK);
             pane.getChildren().add(circle1);
         }
+        WritableImage image = pane.snapshot(new SnapshotParameters(), null);
 
+        File file = new File("photos\\Your photo\\Voronoi.png");
+
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+        } catch (IOException e) {
+            // TODO: handle exception here
+        }
         this.voronoiScene = new Scene(pane, size, size, LIGHTSTEELBLUE);
     }
 
