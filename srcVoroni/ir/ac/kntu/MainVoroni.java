@@ -3,7 +3,7 @@ package ir.ac.kntu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class MainVoroni extends Application {
     private static final int Size = 800;
     private static final int numCells = 100;
 
