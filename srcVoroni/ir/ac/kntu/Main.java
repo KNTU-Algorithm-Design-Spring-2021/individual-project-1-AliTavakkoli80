@@ -13,7 +13,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         Voronoi voronoi = new Voronoi(Size,numCells);
         stage.setTitle(" Voronoi Diagram ");
         stage.setScene(voronoi.getVoronoiScene());
