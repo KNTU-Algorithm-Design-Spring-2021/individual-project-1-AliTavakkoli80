@@ -47,6 +47,8 @@ public class Box {
             pxy[i + 1] = (double) py[i / 2];
         }
         Polygon polygon = new Polygon(pxy);
+        polygon.setFill(BLUEVIOLET);
+        polygon.setFill(BLUE);
         pane.getChildren().add(polygon);
         this.pRect = new int[4][2];
         //Placing random points on pane
@@ -57,9 +59,6 @@ public class Box {
 
         Arrays.sort(px);
         Arrays.sort(py);
-
-        System.out.println("y " + Arrays.toString(py));
-        System.out.println("x " + Arrays.toString(px));
 
         this.pRect[0][0] = px[0];
         this.pRect[0][1] = py[0];
@@ -104,9 +103,11 @@ public class Box {
 
         this.BoxScene = new Scene(pane, sceneSize, sceneSize, WHITE);
 
+        System.out.println("+< Rectangle Points Are : >+");
+
         for (int i = 0; i < 4; i++) {
-            System.out.print("[" + (pRect[i][0] - sceneSize / 2) + " , ");
-            System.out.println((-pRect[i][1] + sceneSize / 2) + "]");
+            System.out.print("[" + (pRect[i][0] - sceneSize / 2)/SIZE + " , ");
+            System.out.println((-pRect[i][1] + sceneSize / 2)/SIZE + "]");
         }
     }
 
