@@ -1,7 +1,9 @@
 package ir.ac.kntu;
 
+import javafx.css.Style;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -16,11 +18,27 @@ public class Box {
     private int[] py;
     private int[][] pRect;
 
+
     /**
      * @param sceneSize size of the window
      */
-    public Box(int sceneSize, int numPoints, int[] px, int[] py) {
+    public Box(int sceneSize, int numPoints, int[] px, int[] py, int SIZE) {
         Pane pane = new Pane();
+
+        for (int i = 0; i < sceneSize; i+=SIZE) {
+            Line ys = new Line(i,0,i,sceneSize);
+            ys.setStroke(GRAY);
+            Line xs = new Line(0,i,sceneSize,i);
+            xs.setStroke(GRAY);
+            pane.getChildren().addAll(xs,ys);
+        }
+
+        Line yAsix = new Line(sceneSize/2,0,sceneSize/2,sceneSize);
+        yAsix.setStroke(BLACK);
+        Line xAsix = new Line(0,sceneSize/2,sceneSize,sceneSize/2);
+        xAsix.setStroke(BLACK);
+        pane.getChildren().addAll(xAsix,yAsix);
+
         this.px = px;
         this.py = py;
         double[] pxy = new double[2 * numPoints];
@@ -68,17 +86,21 @@ public class Box {
         Circle circleRectD = new Circle(pRect[3][0], pRect[3][1], 3, RED);
         pane.getChildren().add(circleRectD);
 
-        Line RectAB = new Line(pRect[0][0], pRect[0][1], pRect[1][0], pRect[1][1]);
-        pane.getChildren().add(RectAB);
+        Line rectAB = new Line(pRect[0][0], pRect[0][1], pRect[1][0], pRect[1][1]);
+        rectAB.setStroke(GREEN);
+        pane.getChildren().add(rectAB);
 
-        Line RectBC = new Line(pRect[1][0], pRect[1][1], pRect[2][0], pRect[2][1]);
-        pane.getChildren().add(RectBC);
+        Line rectBC = new Line(pRect[1][0], pRect[1][1], pRect[2][0], pRect[2][1]);
+        rectBC.setStroke(GREEN);
+        pane.getChildren().add(rectBC);
 
-        Line RectCD = new Line(pRect[2][0], pRect[2][1], pRect[3][0], pRect[3][1]);
-        pane.getChildren().add(RectCD);
+        Line rectCD = new Line(pRect[2][0], pRect[2][1], pRect[3][0], pRect[3][1]);
+        rectCD.setStroke(GREEN);
+        pane.getChildren().add(rectCD);
 
-        Line RectDA = new Line(pRect[3][0], pRect[3][1], pRect[0][0], pRect[0][1]);
-        pane.getChildren().add(RectDA);
+        Line rectDA = new Line(pRect[3][0], pRect[3][1], pRect[0][0], pRect[0][1]);
+        rectDA.setStroke(GREEN);
+        pane.getChildren().add(rectDA);
 
         this.BoxScene = new Scene(pane, sceneSize, sceneSize, WHITE);
 
