@@ -8,7 +8,7 @@ public class MenuBox {
     private int py[];
 
     public MenuBox(int SCENESIZE, Scanner scanner, int SIZE) {
-
+        System.out.println("+< Please Enter Number Of points : >+");
         this.numPoints = scanner.nextInt();
         this.px = new int[numPoints];
         this.py = new int[numPoints];
