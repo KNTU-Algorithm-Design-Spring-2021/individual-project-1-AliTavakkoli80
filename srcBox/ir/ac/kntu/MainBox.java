@@ -10,7 +10,7 @@ public class MainBox extends Application {
     Scanner scanner = new Scanner(System.in);
     private static final int SCENESIZE = 800;
     private final MenuBox menuBox = new MenuBox(SCENESIZE,scanner,SIZE);
-    private final Box box = new Box(SCENESIZE, menuBox.getNumPoints(), menuBox.getPx(), menuBox.getPy(),SIZE);
+    private final Box box = new Box(SCENESIZE, menuBox.getShapes(),SIZE);
 
     public static void main(String[] args) {
         launch(args);

@@ -10,6 +10,7 @@ import java.util.Arrays;
 import static javafx.scene.paint.Color.*;
 
 public class Shapes {
+    private int numPointsPolygon;
     private int[] px;
     private int[] py;
     private ArrayList<Circle> pointsOfRect;
@@ -22,7 +23,7 @@ public class Shapes {
      * @param sceneSize size of the window
      */
     public Shapes(int sceneSize, int numPoints, int[] px, int[] py, int SIZE) {
-
+        this.numPointsPolygon = numPoints;
         this.px = px;
         this.py = py;
         this.pointsOfRect = new ArrayList<Circle>(4);
@@ -117,4 +118,7 @@ public class Shapes {
         return pRect;
     }
 
+    public int getNumPointsPolygon() {
+        return numPointsPolygon;
+    }
 }

@@ -5,6 +5,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 
+import java.util.ArrayList;
+
 import static javafx.scene.paint.Color.*;
 
 public class Box {
@@ -17,7 +19,7 @@ public class Box {
     /**
      * @param sceneSize size of the window
      */
-    public Box(int sceneSize, int numPoints, int[] px, int[] py, int SIZE) {
+    public Box(int sceneSize, ArrayList<Shapes> shapes, int SIZE) {
         Pane pane = new Pane();
 
         for (int i = 0; i < sceneSize; i += SIZE) {
@@ -33,27 +35,29 @@ public class Box {
         Line xAsix = new Line(0, sceneSize / 2, sceneSize, sceneSize / 2);
         xAsix.setStroke(BLACK);
         pane.getChildren().addAll(xAsix, yAsix);
+        for (int i = 0; i < shapes.size(); i++) {
+            Shapes shape = shapes.get(i);
+            for (int j = 0; j < 4; j++) {
+                pane.getChildren().add(shape.getLRect().get(j));
+                pane.getChildren().add(shape.getPointsOfRect().get(j));
+            }
+            for (int j = 0; j < shape.getNumPointsPolygon(); j++) {
+                pane.getChildren().add(shape.getPolygonPoints().get(j));
+            }
+            pane.getChildren().addAll(shape.getPolygon());
 
-        Shapes shape = new Shapes(sceneSize, numPoints, px, py, SIZE);
-        for (int i = 0; i < 4; i++) {
-            pane.getChildren().add(shape.getLRect().get(i));
-            pane.getChildren().add(shape.getPointsOfRect().get(i));
-        }
-        for (int i = 0; i < numPoints; i++) {
-            pane.getChildren().add(shape.getPolygonPoints().get(i));
-        }
-        pane.getChildren().addAll(shape.getPolygon());
+            System.out.println("+< Rectangle Points Are : >+");
 
+            int[][] pRect = shape.getPRect();
+
+            for (int j = 0; j < 4; j++) {
+                System.out.print("[" + (pRect[j][0] - sceneSize / 2)/SIZE + " , ");
+                System.out.println((-pRect[j][1] + sceneSize / 2)/SIZE + "]");
+            }
+        }
         this.BoxScene = new Scene(pane, sceneSize, sceneSize, WHITE);
 
-        System.out.println("+< Rectangle Points Are : >+");
 
-        int[][] pRect = shape.getPRect();
-
-        for (int i = 0; i < 4; i++) {
-            System.out.print("[" + (pRect[i][0] - sceneSize / 2)/SIZE + " , ");
-            System.out.println((-pRect[i][1] + sceneSize / 2)/SIZE + "]");
-        }
     }
 
 
