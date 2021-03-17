@@ -1,10 +1,15 @@
 package ir.ac.kntu;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static javafx.scene.paint.Color.*;
@@ -46,18 +51,37 @@ public class Box {
             }
             pane.getChildren().addAll(shape.getPolygon());
 
-            System.out.println("+< Rectangle Points Are : >+");
-
-            int[][] pRect = shape.getPRect();
-
-            for (int j = 0; j < 4; j++) {
-                System.out.print("[" + (pRect[j][0] - sceneSize / 2)/SIZE + " , ");
-                System.out.println((-pRect[j][1] + sceneSize / 2)/SIZE + "]");
-            }
         }
+
+        printRectCoordinates(shapes, sceneSize, SIZE);
+
+        WritableImage image = pane.snapshot(new SnapshotParameters(), null);
+
+        File file = new File("photosBox\\Your photo\\Box.png");
+
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+        } catch (IOException e) {
+            // TODO: handle exception here
+        }
+
         this.BoxScene = new Scene(pane, sceneSize, sceneSize, WHITE);
 
 
+    }
+
+    private boolean printRectCoordinates(ArrayList<Shapes> shapes, int sceneSize, int SIZE) {
+
+        for (int i = 0; i < shapes.size() - 1; i++) {
+            System.out.println("+< Rectangle Points Are : >+");
+            Shapes shape = shapes.get(i);
+            int[][] pRect = shape.getPRect();
+            for (int j = 0; j < 4; j++) {
+                System.out.print("[" + (pRect[j][0] - sceneSize / 2) / SIZE + " , ");
+                System.out.println((-pRect[j][1] + sceneSize / 2) / SIZE + "]");
+            }
+        }
+        return true;
     }
 
 

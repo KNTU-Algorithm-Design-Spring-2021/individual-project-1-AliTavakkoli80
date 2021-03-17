@@ -1,11 +1,13 @@
 package ir.ac.kntu;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import static javafx.scene.paint.Color.*;
 
@@ -36,8 +38,8 @@ public class Shapes {
 
         this.polygonPoints = new ArrayList<Circle>();
         this.polygon = new Polygon(pxy);
-        polygon.setFill(BLUEVIOLET);
-        polygon.setFill(BLUE);
+        Random rand = new Random();
+        polygon.setFill(Color.rgb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
 
 
         this.pRect = new int[4][2];

@@ -62,7 +62,7 @@ public class Voronoi {
         }
         WritableImage image = pane.snapshot(new SnapshotParameters(), null);
 
-        File file = new File("photos\\Your photo\\Voronoi.png");
+        File file = new File("photosVoroni\\Your photo\\Voronoi.png");
 
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
