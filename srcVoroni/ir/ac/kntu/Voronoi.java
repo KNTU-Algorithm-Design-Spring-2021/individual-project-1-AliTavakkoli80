@@ -26,7 +26,7 @@ public class Voronoi {
 
     /**
      * @param sceneSize size of the window
-     * @param cells number of random points
+     * @param cells     number of random points
      */
     public Voronoi(int sceneSize, int cells) {
         this.cells = cells;
