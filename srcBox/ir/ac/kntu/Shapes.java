@@ -6,7 +6,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import static javafx.scene.paint.Color.*;
@@ -48,29 +47,32 @@ public class Shapes {
             this.polygonPoints.add(new Circle(px[i], py[i], 3, BLACK));
         }
 
-        Arrays.sort(px);
-        Arrays.sort(py);
+        DacMaxMin dacMaxMinx = new DacMaxMin(px, numPointsPolygon);
+        DacMaxMin dacMaxMiny = new DacMaxMin(py, numPointsPolygon);
 
-        this.pRect[0][0] = px[0];
-        this.pRect[0][1] = py[0];
+//        Arrays.sort(px);
+//        Arrays.sort(py);
+
+        this.pRect[0][0] = dacMaxMinx.getMin();
+        this.pRect[0][1] = dacMaxMiny.getMin();
 
         Circle circleRectA = new Circle(pRect[0][0], pRect[0][1], 3, RED);
         this.pointsOfRect.add(circleRectA);
 
-        this.pRect[1][0] = px[0];
-        this.pRect[1][1] = py[numPoints - 1];
+        this.pRect[1][0] = dacMaxMinx.getMin();
+        this.pRect[1][1] = dacMaxMiny.getMax();
 
         Circle circleRectB = new Circle(pRect[1][0], pRect[1][1], 3, RED);
         this.pointsOfRect.add(circleRectB);
 
-        this.pRect[2][0] = px[numPoints - 1];
-        this.pRect[2][1] = py[numPoints - 1];
+        this.pRect[2][0] = dacMaxMinx.getMax();
+        this.pRect[2][1] = dacMaxMiny.getMax();
 
         Circle circleRectC = new Circle(pRect[2][0], pRect[2][1], 3, RED);
         this.pointsOfRect.add(circleRectC);
 
-        this.pRect[3][0] = px[numPoints - 1];
-        this.pRect[3][1] = py[0];
+        this.pRect[3][0] = dacMaxMinx.getMax();
+        this.pRect[3][1] = dacMaxMiny.getMin();
 
         Circle circleRectD = new Circle(pRect[3][0], pRect[3][1], 3, RED);
         this.pointsOfRect.add(circleRectD);
